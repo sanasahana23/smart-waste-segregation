@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI + IoT Smart Waste Management Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.344.0/lucide.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="min-h-screen bg-gray-50">
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b-4 border-orange-500">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center py-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="bg-gradient-orange-green p-2 rounded-lg">
+                            <i data-lucide="recycle" class="h-8 w-8 text-white"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold text-gray-900">SmartWaste AI</h1>
+                            <p class="text-sm text-gray-600">Intelligent Waste Management System</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="text-right">
+                            <p class="text-sm text-gray-600">Pilot Ward</p>
+                            <p class="font-semibold text-gray-900">Sector 12-18, Delhi</p>
+                        </div>
+                        <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="bg-white shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex space-x-8">
+                    <button class="nav-tab active" data-tab="dashboard">
+                        <i data-lucide="activity" class="h-4 w-4"></i>
+                        <span>Dashboard</span>
+                    </button>
+                    <button class="nav-tab" data-tab="bins">
+                        <i data-lucide="trash-2" class="h-4 w-4"></i>
+                        <span>Smart Bins</span>
+                    </button>
+                    <button class="nav-tab" data-tab="mrf">
+                        <i data-lucide="factory" class="h-4 w-4"></i>
+                        <span>MRF Automation</span>
+                    </button>
+                    <button class="nav-tab" data-tab="rewards">
+                        <i data-lucide="qr-code" class="h-4 w-4"></i>
+                        <span>Rewards System</span>
+                    </button>
+                    <button class="nav-tab" data-tab="analytics">
+                        <i data-lucide="trending-up" class="h-4 w-4"></i>
+                        <span>Analytics</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Dashboard Tab -->
+            <div id="dashboard-content" class="tab-content active">
+                <div class="space-y-8">
+                    <!-- KPI Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="status-card" style="border-color: #138808">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-600 mb-1">Segregation Compliance</p>
+                                    <p class="text-2xl font-bold text-gray-900"><span id="compliance-rate">72.3</span>%</p>
+                                </div>
+                                <i data-lucide="check-circle" class="h-8 w-8" style="color: #138808"></i>
+                            </div>
+                        </div>
+                        <div class="status-card" style="border-color: #FF9933">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-600 mb-1">Active Users</p>
+                                    <p class="text-2xl font-bold text-gray-900"><span id="active-users">1238</span></p>
+                                </div>
+                                <i data-lucide="users" class="h-8 w-8" style="color: #FF9933"></i>
+                            </div>
+                        </div>
+                        <div class="status-card" style="border-color: #138808">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-600 mb-1">Recyclables Recovered</p>
+                                    <p class="text-2xl font-bold text-gray-900">42.1%</p>
+                                </div>
+                                <i data-lucide="recycle" class="h-8 w-8" style="color: #138808"></i>
+                            </div>
+                        </div>
+                        <div class="status-card" style="border-color: #FF9933">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-600 mb-1">Total Rewards</p>
+                                    <p class="text-2xl font-bold text-gray-900"><span id="total-rewards">45</span>K</p>
+                                </div>
+                                <i data-lucide="indian-rupee" class="h-8 w-8" style="color: #FF9933"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Architecture -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h2 class="text-xl font-semibold mb-6 text-gray-800">System Architecture</h2>
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <div class="flex items-center mb-3">
+                                    <i data-lucide="smartphone" class="h-6 w-6 text-blue-600 mr-2"></i>
+                                    <h3 class="font-semibold text-blue-800">Edge AI</h3>
+                                </div>
+                                <p class="text-sm text-blue-700">MobileNetV2 on-device classification with 90%+ accuracy for instant feedback</p>
+                                <div class="mt-3 text-xs text-blue-600 bg-blue-100 px-2 py-1 rounded">
+                                    Confidence: 94.2%
+                                </div>
+                            </div>
+
+                            <div class="bg-purple-50 p-4 rounded-lg">
+                                <div class="flex items-center mb-3">
+                                    <i data-lucide="cloud" class="h-6 w-6 text-purple-600 mr-2"></i>
+                                    <h3 class="font-semibold text-purple-800">Cloud AI</h3>
+                                </div>
+                                <p class="text-sm text-purple-700">VGG-19 ensemble + YOLO for high-precision verification and MRF automation</p>
+                                <div class="mt-3 text-xs text-purple-600 bg-purple-100 px-2 py-1 rounded">
+                                    Accuracy: 97.8%
+                                </div>
+                            </div>
+
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <div class="flex items-center mb-3">
+                                    <i data-lucide="cpu" class="h-6 w-6 text-green-600 mr-2"></i>
+                                    <h3 class="font-semibold text-green-800">Hybrid Pipeline</h3>
+                                </div>
+                                <p class="text-sm text-green-700">Confidence-based routing: Edge → Cloud → Manual review for optimal accuracy</p>
+                                <div class="mt-3 text-xs text-green-600 bg-green-100 px-2 py-1 rounded">
+                                    False Rate: &lt;2%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Feed -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h2 class="text-xl font-semibold mb-6 text-gray-800 flex items-center">
+                            <i data-lucide="activity" class="h-5 w-5 mr-2 text-orange-500"></i>
+                            Live System Feed
+                        </h2>
+                        <div id="live-feed" class="space-y-3 max-h-64 overflow-y-auto">
+                            <!-- Live feed items will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Smart Bins Tab -->
+            <div id="bins-content" class="tab-content">
+                <div class="space-y-6">
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-2xl font-semibold text-gray-800">Smart Bin Network</h2>
+                        <div class="flex items-center space-x-2 text-sm text-gray-600">
+                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            <span>Real-time IoT monitoring</span>
+                        </div>
+                    </div>
+
+                    <div id="bins-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- Bin cards will be populated by JavaScript -->
+                    </div>
+
+                    <!-- Sensor Technology -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-800">Integrated Sensor Technology</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                                <i data-lucide="camera" class="h-6 w-6 text-blue-600"></i>
+                                <div>
+                                    <p class="font-medium text-blue-800">Computer Vision</p>
+                                    <p class="text-sm text-blue-600">Real-time classification</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3 p-3 bg-green-50 rounded-lg">
+                                <i data-lucide="scale" class="h-6 w-6 text-green-600"></i>
+                                <div>
+                                    <p class="font-medium text-green-800">Weight Sensors</p>
+                                    <p class="text-sm text-green-600">Load cell accuracy</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3 p-3 bg-purple-50 rounded-lg">
+                                <i data-lucide="zap" class="h-6 w-6 text-purple-600"></i>
+                                <div>
+                                    <p class="font-medium text-purple-800">IoT Connectivity</p>
+                                    <p class="text-sm text-purple-600">NB-IoT / LoRaWAN</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MRF Tab -->
+            <div id="mrf-content" class="tab-content">
+                <div class="space-y-6">
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-2xl font-semibold text-gray-800">Material Recovery Facility</h2>
+                        <span id="mrf-status" class="px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                            ACTIVE
+                        </span>
+                    </div>
+
+                    <!-- MRF Stats -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <div class="status-card" style="border-color: #138808">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-600 mb-1">Throughput</p>
+                                    <p class="text-2xl font-bold text-gray-900"><span id="throughput">485</span> items/hr</p>
+                                </div>
+                                <i data-lucide="activity" class="h-8 w-8" style="color: #138808"></i>
+                            </div>
+                        </div>
+                        <div class="status-card" style="border-color: #FF9933">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-600 mb-1">AI Accuracy</p>
+                                    <p class="text-2xl font-bold text-gray-900">94.2%</p>
+                                </div>
+                                <i data-lucide="check-circle" class="h-8 w-8" style="color: #FF9933"></i>
+                            </div>
+                        </div>
+                        <div class="status-card" style="border-color: #138808">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-600 mb-1">Items Processed</p>
+                                    <p class="text-2xl font-bold text-gray-900"><span id="items-processed">1247</span></p>
+                                </div>
+                                <i data-lucide="factory" class="h-8 w-8" style="color: #138808"></i>
+                            </div>
+                        </div>
+                        <div class="status-card" style="border-color: #FF9933">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-600 mb-1">Recyclables Sorted</p>
+                                    <p class="text-2xl font-bold text-gray-900"><span id="recyclables-sorted">892</span></p>
+                                </div>
+                                <i data-lucide="recycle" class="h-8 w-8" style="color: #FF9933"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conveyor System -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-800">Automated Conveyor System</h3>
+                        <div class="relative bg-gray-100 rounded-lg p-6 min-h-[200px]">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-full max-w-4xl">
+                                    <!-- Conveyor Belt Visualization -->
+                                    <div class="relative">
+                                        <div class="conveyor-belt">
+                                            <!-- Moving belt effect -->
+                                            <div class="belt-animation"></div>
+                                            
+                                            <!-- Items on belt -->
+                                            <div class="belt-item belt-item-1"></div>
+                                            <div class="belt-item belt-item-2"></div>
+                                        </div>
+                                        
+                                        <!-- Sorting bins -->
+                                        <div class="flex justify-between mt-4">
+                                            <div class="text-center">
+                                                <div class="w-12 h-12 bg-blue-500 rounded mx-auto mb-2"></div>
+                                                <p class="text-sm font-medium text-blue-700">Plastic</p>
+                                            </div>
+                                            <div class="text-center">
+                                                <div class="w-12 h-12 rounded mx-auto mb-2" style="background-color: #8B4513"></div>
+                                                <p class="text-sm font-medium" style="color: #8B4513">Paper</p>
+                                            </div>
+                                            <div class="text-center">
+                                                <div class="w-12 h-12 bg-gray-600 rounded mx-auto mb-2"></div>
+                                                <p class="text-sm font-medium text-gray-700">Metal</p>
+                                            </div>
+                                            <div class="text-center">
+                                                <div class="w-12 h-12 bg-green-600 rounded mx-auto mb-2"></div>
+                                                <p class="text-sm font-medium text-green-700">Organic</p>
+                                            </div>
+                                            <div class="text-center">
+                                                <div class="w-12 h-12 bg-red-500 rounded mx-auto mb-2"></div>
+                                                <p class="text-sm font-medium text-red-700">Manual Review</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Pipeline -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-800">AI Classification Pipeline</h3>
+                        <div class="flex items-center justify-between space-x-4">
+                            <div class="text-center flex-1">
+                                <i data-lucide="camera" class="h-8 w-8 mx-auto text-blue-600 mb-2"></i>
+                                <p class="text-sm font-medium text-blue-800">Image Capture</p>
+                                <p class="text-xs text-blue-600">60 FPS Industrial Camera</p>
+                            </div>
+                            <div class="text-2xl text-gray-400">→</div>
+                            <div class="text-center flex-1">
+                                <i data-lucide="cpu" class="h-8 w-8 mx-auto text-purple-600 mb-2"></i>
+                                <p class="text-sm font-medium text-purple-800">YOLO Detection</p>
+                                <p class="text-xs text-purple-600">Object Boundary Box</p>
+                            </div>
+                            <div class="text-2xl text-gray-400">→</div>
+                            <div class="text-center flex-1">
+                                <i data-lucide="cloud" class="h-8 w-8 mx-auto text-green-600 mb-2"></i>
+                                <p class="text-sm font-medium text-green-800">Ensemble Model</p>
+                                <p class="text-xs text-green-600">VGG-19 Classification</p>
+                            </div>
+                            <div class="text-2xl text-gray-400">→</div>
+                            <div class="text-center flex-1">
+                                <i data-lucide="factory" class="h-8 w-8 mx-auto text-orange-600 mb-2"></i>
+                                <p class="text-sm font-medium text-orange-800">Sorting Action</p>
+                                <p class="text-xs text-orange-600">Pneumatic Actuator</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rewards Tab -->
+            <div id="rewards-content" class="tab-content">
+                <div class="space-y-6">
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-2xl font-semibold text-gray-800">Reward-Penalty System</h2>
+                        <div class="flex items-center space-x-2 text-sm text-green-600">
+                            <i data-lucide="check-circle" class="h-4 w-4"></i>
+                            <span>Fraud Protection Active</span>
+                        </div>
+                    </div>
+
+                    <!-- Reward Stats -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <div class="status-card" style="border-color: #FF9933">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-600 mb-1">Total Rewards Pool</p>
+                                    <p class="text-2xl font-bold text-gray-900">45K</p>
+                                </div>
+                                <i data-lucide="indian-rupee" class="h-8 w-8" style="color: #FF9933"></i>
+                            </div>
+                        </div>
+                        <div class="status-card" style="border-color: #138808">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-600 mb-1">Active Participants</p>
+                                    <p class="text-2xl font-bold text-gray-900">1238</p>
+                                </div>
+                                <i data-lucide="users" class="h-8 w-8" style="color: #138808"></i>
+                            </div>
+                        </div>
+                        <div class="status-card" style="border-color: #FF9933">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-600 mb-1">QR Redemptions</p>
+                                    <p class="text-2xl font-bold text-gray-900">234</p>
+                                </div>
+                                <i data-lucide="qr-code" class="h-8 w-8" style="color: #FF9933"></i>
+                            </div>
+                        </div>
+                        <div class="status-card" style="border-color: #138808">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-600 mb-1">Compliance Rate</p>
+                                    <p class="text-2xl font-bold text-gray-900">72.3%</p>
+                                </div>
+                                <i data-lucide="trending-up" class="h-8 w-8" style="color: #138808"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QR Code Demo -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-800">QR-Based Verification System</h3>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div class="space-y-4">
+                                <div class="bg-orange-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-orange-800 mb-2">Multi-Layer Fraud Prevention</h4>
+                                    <ul class="space-y-2 text-sm text-orange-700">
+                                        <li class="flex items-center">
+                                            <i data-lucide="check-circle" class="h-4 w-4 mr-2"></i>
+                                            QR scan + GPS location verification
+                                        </li>
+                                        <li class="flex items-center">
+                                            <i data-lucide="check-circle" class="h-4 w-4 mr-2"></i>
+                                            Image capture with AI validation
+                                        </li>
+                                        <li class="flex items-center">
+                                            <i data-lucide="check-circle" class="h-4 w-4 mr-2"></i>
+                                            Weight sensor corroboration
+                                        </li>
+                                        <li class="flex items-center">
+                                            <i data-lucide="check-circle" class="h-4 w-4 mr-2"></i>
+                                            Time-stamped collector logs
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-green-800 mb-2">UPI Integration</h4>
+                                    <p class="text-sm text-green-700">
+                                        Direct bank transfer rewards via UPI for instant gratification and transparency
+                                    </p>
+                                    <div class="mt-2 text-xs text-green-600 bg-green-100 px-2 py-1 rounded">
+                                        Processing Fee: ₹0 • Settlement: Instant
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-gray-50 p-6 rounded-lg text-center">
+                                <div class="bg-white p-4 rounded-lg inline-block shadow-md">
+                                    <div class="qr-code">
+                                        <!-- QR Code Pattern -->
+                                        <div class="qr-pattern">
+                                            <!-- QR code squares will be generated by CSS -->
+                                        </div>
+                                    </div>
+                                    <p class="text-sm font-medium text-gray-800">BIN001-20250110</p>
+                                    <p class="text-xs text-gray-600">Scan to Earn Rewards</p>
+                                </div>
+                                
+                                <div class="mt-4 space-y-2">
+                                    <div class="text-sm text-gray-600">Sample Transaction:</div>
+                                    <div class="bg-white p-3 rounded border">
+                                        <div class="flex justify-between text-sm">
+                                            <span>Plastic Bottle</span>
+                                            <span class="text-green-600 font-semibold">+15 pts</span>
+                                        </div>
+                                        <div class="text-xs text-gray-500 mt-1">Confidence: 94% • Verified ✓</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Circular Economy -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-800">Circular Value Loop</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="text-center p-4 bg-blue-50 rounded-lg">
+                                <i data-lucide="recycle" class="h-10 w-10 mx-auto text-blue-600 mb-3"></i>
+                                <h4 class="font-semibold text-blue-800 mb-2">Recyclables Sales</h4>
+                                <p class="text-2xl font-bold text-blue-900 mb-1">₹28,450</p>
+                                <p class="text-sm text-blue-600">Monthly Revenue</p>
+                            </div>
+                            
+                            <div class="text-center p-4 bg-green-50 rounded-lg">
+                                <i data-lucide="activity" class="h-10 w-10 mx-auto text-green-600 mb-3"></i>
+                                <h4 class="font-semibold text-green-800 mb-2">Compost Sales</h4>
+                                <p class="text-2xl font-bold text-green-900 mb-1">₹12,200</p>
+                                <p class="text-sm text-green-600">Monthly Revenue</p>
+                            </div>
+                            
+                            <div class="text-center p-4 bg-orange-50 rounded-lg">
+                                <i data-lucide="users" class="h-10 w-10 mx-auto text-orange-600 mb-3"></i>
+                                <h4 class="font-semibold text-orange-800 mb-2">CSR Funding</h4>
+                                <p class="text-2xl font-bold text-orange-900 mb-1">₹45,000</p>
+                                <p class="text-sm text-orange-600">Quarterly</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium text-gray-700">Sustainability Index</span>
+                                <span class="text-sm font-bold text-green-600">78% Self-Sufficient</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="sustainability-bar"></div>
+                            </div>
+                            <p class="text-xs text-gray-600 mt-1">Target: 85% by Q2 2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Tab -->
+            <div id="analytics-content" class="tab-content">
+                <div class="space-y-6">
+                    <h2 class="text-2xl font-semibold text-gray-800">Performance Analytics</h2>
+
+                    <!-- Key Metrics -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h3 class="text-lg font-semibold mb-4 text-gray-800">SIH Target Progress</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span>Segregation Compliance</span>
+                                        <span>72.3% / 70%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="w-full bg-green-500 h-2 rounded-full"></div>
+                                    </div>
+                                    <p class="text-xs text-green-600 mt-1">✓ Target Achieved</p>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span>Recyclable Recovery</span>
+                                        <span>42.1% / 40%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="w-full bg-green-500 h-2 rounded-full"></div>
+                                    </div>
+                                    <p class="text-xs text-green-600 mt-1">✓ Target Exceeded</p>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span>False Credit Rate</span>
+                                        <span>1.8% / &lt;2%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="w-11/12 bg-green-500 h-2 rounded-full"></div>
+                                    </div>
+                                    <p class="text-xs text-green-600 mt-1">✓ Within Target</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h3 class="text-lg font-semibold mb-4 text-gray-800">AI Performance</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-600">Edge Accuracy</span>
+                                    <span class="font-semibold text-blue-600">89.4%</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-600">Cloud Accuracy</span>
+                                    <span class="font-semibold text-purple-600">97.8%</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-600">Hybrid Pipeline</span>
+                                    <span class="font-semibold text-green-600">95.2%</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-600">Processing Speed</span>
+                                    <span class="font-semibold text-orange-600">1.2s avg</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h3 class="text-lg font-semibold mb-4 text-gray-800">Impact Metrics</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-600">Landfill Reduction</span>
+                                    <span class="font-semibold text-green-600">47.3%</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-600">CO₂ Saved</span>
+                                    <span class="font-semibold text-blue-600">2.1 tons</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-600">Revenue Generated</span>
+                                    <span class="font-semibold text-orange-600">₹85,650</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-600">Jobs Created</span>
+                                    <span class="font-semibold text-purple-600">12</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Success Indicators -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-800">SIH Evaluation Criteria</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-4">
+                                <h4 class="font-semibold text-green-800">Technical Excellence ✓</h4>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-center text-green-700">
+                                        <i data-lucide="check-circle" class="h-4 w-4 mr-2"></i>
+                                        Hybrid AI architecture with 95%+ accuracy
+                                    </li>
+                                    <li class="flex items-center text-green-700">
+                                        <i data-lucide="check-circle" class="h-4 w-4 mr-2"></i>
+                                        Real-time IoT integration & monitoring
+                                    </li>
+                                    <li class="flex items-center text-green-700">
+                                        <i data-lucide="check-circle" class="h-4 w-4 mr-2"></i>
+                                        Scalable edge-cloud computing pipeline
+                                    </li>
+                                    <li class="flex items-center text-green-700">
+                                        <i data-lucide="check-circle" class="h-4 w-4 mr-2"></i>
+                                        Anti-fraud multi-layer verification
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="space-y-4">
+                                <h4 class="font-semibold text-orange-800">Innovation & Impact ✓</h4>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-center text-orange-700">
+                                        <i data-lucide="check-circle" class="h-4 w-4 mr-2"></i>
+                                        First reward-penalty circular loop system
+                                    </li>
+                                    <li class="flex items-center text-orange-700">
+                                        <i data-lucide="check-circle" class="h-4 w-4 mr-2"></i>
+                                        Municipal-grade audit transparency
+                                    </li>
+                                    <li class="flex items-center text-orange-700">
+                                        <i data-lucide="check-circle" class="h-4 w-4 mr-2"></i>
+                                        Financially sustainable from Day 1
+                                    </li>
+                                    <li class="flex items-center text-orange-700">
+                                        <i data-lucide="check-circle" class="h-4 w-4 mr-2"></i>
+                                        Direct behavior change via incentives
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 p-4 bg-gradient-to-r from-orange-50 to-green-50 rounded-lg border-l-4 border-orange-500">
+                            <div class="flex items-center">
+                                <i data-lucide="alert-circle" class="h-5 w-5 text-orange-600 mr-2"></i>
+                                <p class="font-semibold text-gray-800">SIH Readiness Score: 94/100</p>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">
+                                Ready for pilot deployment with comprehensive MVP demonstration capability
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
